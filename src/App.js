@@ -1,22 +1,27 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import TaskFeed from './components/TaskFeed';
+import TaskForm from './components/TaskForm';
 
-function App() {
+const App = () => {
+  
+  let [shouldRefresh, setShouldRefresh] = useState(false)
+
+  useEffect(() => {
+    if (shouldRefresh === true) {
+        setShouldRefresh(false)
+    }
+  }, [shouldRefresh])
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <TaskForm 
+          onTaskSubmission={() => { setShouldRefresh(true) }}
+        />
+        <TaskFeed 
+          shouldRefresh={shouldRefresh}
+        />
       </header>
     </div>
   );
