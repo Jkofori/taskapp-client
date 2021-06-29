@@ -10,7 +10,7 @@ import {
 } from '@apollo/client';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000'
+  uri: 'https://taskapp-server1.herokuapp.com/'
 });
 
 const client = new ApolloClient({
